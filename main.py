@@ -1,16 +1,35 @@
-from restaurant import Restaurant, Menu
+from restaurant import Cafe, FastFood, Diner, FineDining
+from people import *
 
-m1 = Menu()
-m1.set_menu(["Breakfast", "Lunch", "Happy Hour"], ["Soft Drinks", "Tea", "Coffee", "Alcohol"])
-r1 = Restaurant("Jade Panda", 25, m1) 
-r1.set_hours(7,21)
+r1 = Diner("Jade Panda", 25) 
+r1.logistics.set_hours(7,21)
 r1.summarize()
 
 
-m2 = Menu()
-m2.set_menu(["Breakfast", "Lunch"], ["Soft Drinks", "Tea", "Coffee", "Smoothies", "Juices"])
-r2 = Restaurant("Bagel Bites", 10, m1) 
-r2.set_hours(10,2)
+r2 = Cafe("Bagel Bites", 10) 
+r2.logistics.set_hours(10,2)
 r2.summarize()
+
+
+r3 = FineDining("Pierre by the Pier", 15)
+r3.logistics.set_hours(17,21)
+r3.summarize()
+
+r4 = Diner("Freddy's Bistro", 40)
+r4.summarize()
+c4 = Customer("Sally", "Molly", 500)
+s4 = Server("Jeeves", "Servantes", 100)
+cook4 = Cook("Caty", "Kook", 100)
+print("Before")
+print(c4.check_wallet())
+print(r4.show_earnings())
+print(s4.check_wallet())
+print(cook4.check_wallet())
+r4.process_order("pasta", [c4, s4, cook4])
+print("After")
+print(c4.check_wallet())
+print(r4.show_earnings())
+print(s4.check_wallet())
+print(cook4.check_wallet())
 
 
