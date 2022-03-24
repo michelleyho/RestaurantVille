@@ -3,6 +3,7 @@ from people import *
 
 r1 = Diner("Jade Panda", 25) 
 r1.logistics.set_hours(7,21)
+print(r1.show_operating_hours())
 r1.summarize()
 
 
