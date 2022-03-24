@@ -1,4 +1,5 @@
 from src.restaurant import *
+from src.people import *
 
 
 def test_restaurant_set_hours():
@@ -48,3 +49,31 @@ def test_restaurant_change_occupancy():
 
     r.change_occupancy(-8)
     assert r.show_available_seats() == 2
+
+def test_restaurant_process_order():
+    r = Restaurant('Pierre by the Pier')
+    c = Customer('Nancy', 'Shmancy',100)
+    r.change_menu(['Clam Chowder'], 'food')
+    
+    r.process_order('Clam Chowder',[c])
+    
+    assert 5010 == r.show_earnings()
+    assert 90 == c.check_wallet() 
+
+def test_fineDining():
+    f = FineDining('Pierre by the Sea')
+    assert f.check_menu('alcohol')
+    assert DiningOptions.DELIVERY not in f.logistics.dine_options  
+
+def test_diner():
+    d = Diner("Dina's Diner")
+    assert d.check_menu('salads')
+
+def test_fastfood():
+    f = FastFood("Berger's Burger")
+    assert DiningOptions.DRIVE_THROUGH in f.logistics.dine_options
+    assert f.check_menu('pizza')
+
+def test_cafe():
+    c = Cafe("Cathy's Corner")
+    assert c.check_menu('croissant') 
