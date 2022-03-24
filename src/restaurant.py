@@ -10,7 +10,7 @@ class DiningOptions(Enum):
     PICK_UP = 3
 
 class Logistics:
-    def __init__(self, basic_info):
+    def __init__(self):
         self.seats_available = 5
         self.num_staff = 3
         self.opening_hour = 0
@@ -37,9 +37,9 @@ class Logistics:
         return self.net_worth
 
 class Restaurant:
-    def __init__(self, name, basics=None):
+    def __init__(self, name):
         self.restaurant_name = name
-        self.logistics = Logistics(basics)
+        self.logistics = Logistics()
         self.menu = Menu()
 
     def show_earnings(self):
@@ -84,8 +84,8 @@ class Restaurant:
                 
 
 class Cafe(Restaurant):
-    def __init__(self, name, basics):
-        super().__init__(name, basics)
+    def __init__(self, name):
+        super().__init__(name)
         food = ["cake", "muffin", "pie", "bread", "croissant", "danish"]
         drinks = ["coffee", "tea", "juice", "smoothies"]
         self.menu = Menu(food, drinks)
@@ -93,8 +93,8 @@ class Cafe(Restaurant):
         self.logistics.cost_multipler = 0.8
     
 class FastFood(Restaurant):
-    def __init__(self, name, basics):
-        super().__init__(name, basics)
+    def __init__(self, name):
+        super().__init__(name)
         food = ["burger", "pizza", "sandwiches", "fries"]
         drinks = ["coffee", "tea", "juice", "smoothies", "soda"]
         self.menu = Menu(food, drinks)
@@ -102,8 +102,8 @@ class FastFood(Restaurant):
         self.logistics.cost_multipler = 0.7
 
 class Diner(Restaurant):
-    def __init__(self, name, basics):
-        super().__init__(name, basics)
+    def __init__(self, name):
+        super().__init__(name)
         food = ["pasta", "burgers", "salads", "soups", "appetizer", "dessert"]
         drinks = ["coffee", "tea", "juice", "soda", "cocktail", "alcohol"]
         self.menu = Menu(food, drinks)
@@ -111,8 +111,8 @@ class Diner(Restaurant):
         self.logistics.cost_multipler = 1.2
 
 class FineDining(Restaurant):
-    def __init__(self, name, basics):
-        super().__init__(name, basics)
+    def __init__(self, name):
+        super().__init__(name)
         food = ["Seafood", "pasta", "casseroles", "entrees", "appetizers"]
         drinks = ["coffee", "tea", "wine", "cocktail", "alcohol"]
         self.menu = Menu(food, drinks)
