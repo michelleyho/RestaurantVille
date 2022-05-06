@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Initialize mandatory git config
+      run: |
+       git config user.name "GitHub Actions"
+       git config user.email noreply@github.com
     - name: Check out code
       uses: actions/checkout@v2
     - name: Create release branch
@@ -21,7 +25,7 @@ jobs:
         git rm -r .github/workflows
         git rm -r env
         git rm requirements.txt
-        git add
+        git add --all
         git commit --message "Prepare release ${{ github.event.inputs.versionName }}"
         echo "::set-output name=commit::$(git rev-parse HEAD)"
     - name: Push new branch
