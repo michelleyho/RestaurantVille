@@ -22,9 +22,8 @@ jobs:
     - name: Scrub internal files
       id: make-commit
       run: |
-        git rm -r .github/workflows
-        git rm -r env
-        git rm requirements.txt
+        chmod +x scrub_file.sh
+        ./scrub_file.sh
         git add --all
         git commit --message "Prepare release ${{ github.event.inputs.versionName }}"
         echo "::set-output name=commit::$(git rev-parse HEAD)"
